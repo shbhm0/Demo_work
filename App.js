@@ -28,6 +28,9 @@ export default class App extends React.Component {
     return (
       <View>
         <Text> App </Text>
+        <View>
+          <Text>Hello</Text>
+        </View>
       </View>
     );
   }
