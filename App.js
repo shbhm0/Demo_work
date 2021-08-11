@@ -31,6 +31,7 @@ export default class App extends React.Component {
         <View>
           <Text>Hello</Text>
           <Text>Hello Alok</Text>
+          <Text>Aman Shukla</Text>
         </View>
       </View>
     );
