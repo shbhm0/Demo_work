@@ -30,6 +30,7 @@ export default class App extends React.Component {
         <Text> App </Text>
         <View>
           <Text>Hello</Text>
+          <Text>Hello Alok</Text>
         </View>
       </View>
     );
