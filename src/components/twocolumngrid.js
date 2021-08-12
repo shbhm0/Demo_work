@@ -2,8 +2,9 @@ import React from 'react';
 import {FlatList, StyleSheet, View, Image} from 'react-native';
 import {vh, vw} from '/Users/admin/Desktop/Demo_work/src/dimension.js';
 
-const FullSlider = props => {
+const TwoColumnGrid = props => {
   const circularSlider = ({item}) => {
+    console.log(item, 'twocolumn');
     return (
       <View style={styles.mainContainer}>
         <Image style={styles.fullBannerImage} source={{uri: item.url}} />
@@ -13,16 +14,11 @@ const FullSlider = props => {
   return (
     <View style={styles.container}>
       <FlatList
-        horizontal={true}
+        numColumns={2}
         data={props.data1}
         keyExtractor={item => item.id}
         renderItem={circularSlider}
-        disableIntervalMomentum={true}
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled={true}
-        legacyImplementation={false}
       />
-      <View style={styles.lineSeparator}></View>
     </View>
   );
 };
@@ -32,20 +28,14 @@ const styles = StyleSheet.create({
     marginTop: vh(30),
   },
   fullBannerImage: {
-    height: vh(350),
-    width: vw(340),
-    marginRight: vw(15),
+    height: vh(190),
+    width: vw(170),
+    marginRight: 15,
+    marginBottom: 15,
   },
   labelFont: {
     fontSize: vh(10),
     marginTop: vh(5),
   },
-  lineSeparator: {
-    borderBottomColor: '#efefef',
-    borderBottomWidth: 1,
-    marginTop: 30,
-    marginLeft: 10,
-    marginRight: 10,
-  },
 });
-export default FullSlider;
+export default TwoColumnGrid;

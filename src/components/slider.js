@@ -1,51 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {FlatList, Text, StyleSheet, View, Image} from 'react-native';
-import {vh, vw, normalize} from '../dimensions/dimension';
-import {APILinks} from '../constant/index';
+import {
+  vh,
+  vw,
+  normalize,
+} from '/Users/admin/Desktop/Demo_work/src/dimension.js';
 
-const Slider = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-
-  const getMovies = async () => {
-    try {
-      const response = await fetch(APILinks.women);
-      const json = await response.json();
-      setData(json.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getMovies();
-  }, []);
+const Slider = props => {
   const circularSlider = ({item}) => {
-    // console.log(item, 'item');
-    const abc = item.items;
-    return item.type === 'circleItemSlider'
-      ? abc.map(ele => {
-          return (
-            <View style={styles.mainContainer}>
-              <View style={styles.roundImageContainer}>
-                <Image
-                  style={styles.roundImage}
-                  source={{uri: ele.image_url}}
-                />
-              </View>
-              <Text style={styles.labelFont}>{ele.label}</Text>
-            </View>
-          );
-        })
-      : null;
+    return (
+      <View style={styles.upperContainer}>
+        <View style={styles.mainContainer}>
+          <View style={styles.roundImageContainer}>
+            <Image style={styles.roundImage} source={{uri: item.image_url}} />
+          </View>
+          <Text style={styles.labelFont}>{item.label}</Text>
+        </View>
+      </View>
+    );
   };
   return (
     <View style={styles.container}>
       <FlatList
         horizontal={true}
-        data={data}
+        data={props.data1}
         keyExtractor={item => item.id}
         renderItem={circularSlider}
         showsHorizontalScrollIndicator={false}
@@ -62,10 +40,18 @@ const styles = StyleSheet.create({
     height: vh(100),
     width: vw(100),
   },
+  upperContainer: {
+    flexDirection: 'row',
+  },
   roundImage: {
     height: vh(75),
     width: vw(75),
     borderRadius: normalize(50),
+  },
+  fullBannerImage: {
+    height: vh(40),
+    width: vw(345),
+    marginRight: vw(15),
   },
   roundImageContainer: {
     height: vh(85),
