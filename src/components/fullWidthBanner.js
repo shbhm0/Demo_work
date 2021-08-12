@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text, StyleSheet, View, Image} from 'react-native';
-import {vh, vw, normalize} from '../dimensions/dimension';
+import {FlatList, StyleSheet, View, Image} from 'react-native';
+import {vh, vw} from '../dimensions/dimension';
 import {APILinks} from '../constant/index';
 
-const Slider = () => {
+const FullSlider = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -25,17 +25,12 @@ const Slider = () => {
   const circularSlider = ({item}) => {
     // console.log(item, 'item');
     const abc = item.items;
-    return item.type === 'circleItemSlider'
+    return item.type === 'fullWidthBannerSlider' && item.index == 54
       ? abc.map(ele => {
+          console.log(ele.url, 'hellooooo');
           return (
             <View style={styles.mainContainer}>
-              <View style={styles.roundImageContainer}>
-                <Image
-                  style={styles.roundImage}
-                  source={{uri: ele.image_url}}
-                />
-              </View>
-              <Text style={styles.labelFont}>{ele.label}</Text>
+              <Image style={styles.fullBannerImage} source={{uri: ele.url}} />
             </View>
           );
         })
@@ -48,37 +43,27 @@ const Slider = () => {
         data={data}
         keyExtractor={item => item.id}
         renderItem={circularSlider}
+        disableIntervalMomentum={true}
         showsHorizontalScrollIndicator={false}
+        pagingEnabled={true}
         legacyImplementation={false}
       />
     </View>
   );
 };
 const styles = StyleSheet.create({
-  container: {},
-  mainContainer: {
-    alignItems: 'center',
-    textAlign: 'auto',
-    height: vh(100),
-    width: vw(100),
+  container: {
+    marginLeft: vw(10),
+    marginTop: vh(30),
   },
-  roundImage: {
-    height: vh(75),
-    width: vw(75),
-    borderRadius: normalize(50),
-  },
-  roundImageContainer: {
-    height: vh(85),
-    width: vw(85),
-    borderWidth: 0.5,
-    borderColor: 'pink',
-    borderRadius: normalize(50),
-    alignItems: 'center',
-    justifyContent: 'center',
+  fullBannerImage: {
+    height: vh(350),
+    width: vw(340),
+    marginRight: vw(15),
   },
   labelFont: {
     fontSize: vh(10),
     marginTop: vh(5),
   },
 });
-export default Slider;
+export default FullSlider;
