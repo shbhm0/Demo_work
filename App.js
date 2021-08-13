@@ -4,7 +4,7 @@ import Women from './src/module/bottomtab/toptabScreens/women';
 const App = () => {
   return (
     <View style={styles.container}>
-      <Women />
+      <Text>hiii</Text>
     </View>
   );
 };
