@@ -58,6 +58,7 @@ export default function App() {
             tag={item.tag}
           />
         ) : null}
+
         {item.tag === 'Bags- Section' ? (
           <Banner
             array={item.items}
@@ -106,6 +107,14 @@ export default function App() {
         {item.tag === 'Lingeries-Grid' ? (
           <PosterGrid array={item.items} tag={item.tag} />
         ) : null}
+
+        {/* Aman Shukla code*/}
+        {item.tag == 'BTS-Entry Banner' 
+        ?<BTS item = {item} />
+        : null}
+        {item.tag == 'Summer Essentials- New' 
+        ?<SummerEssentials item = {item} />
+        : null}
       </View>
     );
   };
