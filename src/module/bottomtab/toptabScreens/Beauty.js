@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function Men(){
+export default function Beauty(){
     return(
         <View style = {styles.mainContainer}>
-            <Text>Mens Screen</Text>
+            <Text>Beauty Screen</Text>
         </View>
     )
 }
