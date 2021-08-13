@@ -6,6 +6,8 @@ import NineGridView from '../../../components/NineGridView';
 import PosterGrid from '../../../components/PosterGrid';
 import Banner from '../../../components/Banner';
 import Separator from '../../../components/Separator';
+import BTS from '../../../components/BTS';
+import SummerEssentials from '../../../components/SummerEssentials';
 import {FlatList} from 'react-native-gesture-handler';
 
 const axios = require('axios');
@@ -27,7 +29,7 @@ export default function App() {
 
   const renderItem = ({item}) => {
     return (
-      <View>
+      <SafeAreaView>
         {item.tag === 'New Shoe Trends' ? (
           <TwoGridView heading={item.header.title} array={item.items} />
         ) : null}
@@ -109,13 +111,11 @@ export default function App() {
         ) : null}
 
         {/* Aman Shukla code*/}
-        {item.tag == 'BTS-Entry Banner' 
-        ?<BTS item = {item} />
-        : null}
-        {item.tag == 'Summer Essentials- New' 
-        ?<SummerEssentials item = {item} />
-        : null}
-      </View>
+        {item.tag == 'BTS-Entry Banner' ? <BTS item={item} /> : null}
+        {item.tag == 'Summer Essentials- New' ? (
+          <SummerEssentials item={item} />
+        ) : null}
+      </SafeAreaView>
     );
   };
 

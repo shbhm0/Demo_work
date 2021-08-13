@@ -8,6 +8,7 @@ import Account from '../modules/bottomTabScreens/Account';
 import Categories from '../modules/bottomTabScreens/Categories';
 import Wishlist from '../modules/bottomTabScreens/Wishlist';
 import {vh, vw, normalize} from '../dimension';
+import Index from '../modules/bottomTabScreens/topTabScreens/index';
 const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
@@ -25,7 +26,7 @@ export default function MyTabs() {
         }}>
         <Tab.Screen
           name="Home"
-          component={Home}
+          component={Index}
           options={{
             tabBarIcon: ({focused}) => {
               return focused ? (

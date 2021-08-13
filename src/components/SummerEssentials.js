@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
-import {vh, vw, normalize, screenWidth, screenHeight} from '../dimensions';
+import {vh, vw, normalize, screenWidth, screenHeight} from '../dimension';
 
 export default function SummerEssentials({item}) {
   const renderData = ({item}) => {
     return (
-      <View style = {styles.imageBox}>
+      <View style={styles.imageBox}>
         <Image
           source={{uri: item.url}}
           style={{
@@ -14,26 +14,22 @@ export default function SummerEssentials({item}) {
             marginVertical: normalize(20),
           }}
         />
-        <Text style = {styles.tag}>{item.tag}</Text>
+        <Text style={styles.tag}>{item.tag}</Text>
       </View>
     );
   };
   const seperator = () => {
-      return(
-        <View style = {{width: vw(15)}}>
-        </View>
-      )
-     
-  }
+    return <View style={{width: vw(15)}}></View>;
+  };
   return (
-    <View>
+    <View style={{marginLeft: vw(10), marginTop: vh(30)}}>
       <Text style={styles.title}>{item.title.toUpperCase()}</Text>
       <FlatList
         horizontal={true}
-        showsHorizontalScrollIndicator = {false}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString()}
         data={item.items}
-        ItemSeparatorComponent = {seperator}
+        ItemSeparatorComponent={seperator}
         renderItem={renderData}
       />
     </View>
@@ -50,6 +46,6 @@ const styles = StyleSheet.create({
     color: '#222',
   },
   imageBox: {
-      alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
