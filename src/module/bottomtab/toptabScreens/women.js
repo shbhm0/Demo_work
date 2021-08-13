@@ -1,80 +1,71 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
-  FlatList,
-  StyleSheet,
   View,
-  Text,
+  StyleSheet,
+  FlatList,
   ActivityIndicator,
 } from 'react-native';
-import {APILinks} from '/Users/admin/Desktop/Demo_work/src/constant/index';
-import Slider from '/Users/admin/Desktop/Demo_work/src/components/slider.js';
-import FeatureStrip from '/Users/admin/Desktop/Demo_work/src/components/featureStrip.js';
-import FullWidthBannerSlider from '/Users/admin/Desktop/Demo_work/src/components/fullWidthBanner.js';
-import TwoColumnGrid from '/Users/admin/Desktop/Demo_work/src/components/twocolumngrid.js';
-import {vw, vh} from '/Users/admin/Desktop/Demo_work/src/dimension.js';
-const Women = props => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+import {APILinks} from '../constants/index';
+import axios from 'axios';
+import {vh, vw, normalize, screenWidth, screenHeight} from '../dimensions';
+import BTS from '../components/BTS';
+import SummerEssentials from "../components/SummerEssentials"
 
-  const getMovies = async () => {
-    try {
-      const response = await fetch(APILinks.women);
-      const json = await response.json();
-      setData(json.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
+export default function Women(props) {
+  const [data, setData] = React.useState(null);
+  React.useEffect(() => {
+    async function apicall() {
+      await axios
+        .get(APILinks.women)
+        .then(response => {
+          setData(response.data.data);
+        })
+        .catch(error => {
+          console.log('Error: ', error);
+        });
     }
-  };
-
-  useEffect(() => {
-    getMovies();
-  }, []);
-  const circularSlider = ({item}) => {
+    apicall();
+  }, [APILinks]);
+console.log("Data: ", data)
+  const renderData = ({item, index}) => {
     return (
       <View>
-        {item.type === 'circleItemSlider' ? (
-          <Slider data1={item.items} />
-        ) : null}
-        {item.type === 'fullWidthBannerSlider' && item.index === 29 ? (
-          <FeatureStrip data1={item.items} />
-        ) : null}
-        {item.type === 'fullWidthBannerSlider' && item.index === 54 ? (
-          <FullWidthBannerSlider data1={item.items} />
-        ) : null}
-        {item.type === 'grid' && item.index === 4 ? (
-          <View style={styles.twogridContainer}>
-            <Text style={styles.sectionHeading}>{item.header.title}</Text>
-            <TwoColumnGrid data1={item.items} />
-          </View>
-        ) : null}
+        {item.tag == 'BTS-Entry Banner' 
+        ?<BTS item = {item} />
+        : null}
+        {item.tag == 'Summer Essentials- New' 
+        ?<SummerEssentials item = {item} />
+        : null}
       </View>
     );
   };
+  
+
+  console.log('Data: ', data);
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={data}
-        keyExtractor={item => item.id}
-        renderItem={circularSlider}
-        showsVerticalScrollIndicator={false}
-        legacyImplementation={false}
-      />
+    <View style={styles.mainContainer}>
+      {data != null ? (
+        <FlatList
+          keyExtractor={() => Math.random().toString()}
+          data={data}
+          renderItem={renderData}
+          contentContainerStyle={styles.flatlistStyles}
+        />
+      ) : (
+        <ActivityIndicator size="large" color="grey" />
+      )}
     </View>
   );
-};
+}
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#fff"
   },
-  sectionHeading: {
-    fontSize: vh(18),
-    textTransform: 'uppercase',
-    marginLeft: vw(10),
+  flatlistStyles: {
+    padding: normalize(10),
   },
-  twogridContainer: {
-    marginTop: vh(40),
-  },
+ 
 });
-export default Women;
