@@ -5,6 +5,9 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text>hiii</Text>
+      <Text>hiii</Text>
+      <Text>hiii</Text>
+      <Text>hiii</Text>
     </View>
   );
 };
