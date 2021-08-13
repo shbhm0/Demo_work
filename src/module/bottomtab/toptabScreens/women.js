@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  View,
-  Text,
-  ActivityIndicator,
-} from 'react-native';
+import {FlatList, StyleSheet, View, Text} from 'react-native';
 import {APILinks} from '/Users/admin/Desktop/Demo_work/src/constant/index';
 import Slider from '/Users/admin/Desktop/Demo_work/src/components/slider.js';
 import FeatureStrip from '/Users/admin/Desktop/Demo_work/src/components/featureStrip.js';
@@ -41,12 +35,55 @@ const Women = props => {
           <FeatureStrip data1={item.items} />
         ) : null}
         {item.type === 'fullWidthBannerSlider' && item.index === 54 ? (
-          <FullWidthBannerSlider data1={item.items} />
+          <FullWidthBannerSlider
+            data1={item.items}
+            horizontal={true}
+            disableIntervalMomentum={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled={true}
+            legacyImplementation={false}
+            height={vh(350)}
+            width={vw(340)}
+          />
         ) : null}
         {item.type === 'grid' && item.index === 4 ? (
           <View style={styles.twogridContainer}>
             <Text style={styles.sectionHeading}>{item.header.title}</Text>
-            <TwoColumnGrid data1={item.items} />
+            <TwoColumnGrid
+              data1={item.items}
+              numColumns={2}
+              height={vh(190)}
+              width={vw(170)}
+            />
+          </View>
+        ) : null}
+        {item.type === 'banner' &&
+        (item.index === 20 ||
+          item.index === 21 ||
+          item.index === 22 ||
+          item.index === 23 ||
+          item.index === 24) ? (
+          <View style={styles.premiumEdit}>
+            {item.header != undefined ? (
+              <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            ) : null}
+            <FullWidthBannerSlider
+              data1={item.items}
+              height={vh(250)}
+              width={vw(355)}
+              horizontal={false}
+            />
+          </View>
+        ) : null}
+        {item.type === 'grid' && item.index === 46 ? (
+          <View style={styles.moreBrands}>
+            <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            <TwoColumnGrid
+              data1={item.items}
+              numColumns={4}
+              height={vh(60)}
+              width={vw(78)}
+            />
           </View>
         ) : null}
       </View>
@@ -67,6 +104,7 @@ const Women = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexGrow: 1,
   },
   sectionHeading: {
     fontSize: vh(18),
@@ -74,7 +112,10 @@ const styles = StyleSheet.create({
     marginLeft: vw(10),
   },
   twogridContainer: {
-    marginTop: vh(40),
+    marginTop: vh(20),
+  },
+  moreBrands: {
+    marginTop: vh(25),
   },
 });
 export default Women;

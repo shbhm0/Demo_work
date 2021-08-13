@@ -6,30 +6,37 @@ const FullSlider = props => {
   const circularSlider = ({item}) => {
     return (
       <View style={styles.mainContainer}>
-        <Image style={styles.fullBannerImage} source={{uri: item.url}} />
+        <Image
+          style={[
+            styles.fullBannerImage,
+            {height: props.height, width: props.width},
+          ]}
+          source={{uri: item.url}}
+        />
       </View>
     );
   };
   return (
     <View style={styles.container}>
       <FlatList
-        horizontal={true}
+        horizontal={props.horizontal}
         data={props.data1}
         keyExtractor={item => item.id}
         renderItem={circularSlider}
-        disableIntervalMomentum={true}
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled={true}
-        legacyImplementation={false}
+        disableIntervalMomentum={props.disableIntervalMomentum}
+        showsHorizontalScrollIndicator={props.showsHorizontalScrollIndicator}
+        pagingEnabled={props.pagingEnabled}
+        legacyImplementation={props.legacyImplementation}
       />
-      <View style={styles.lineSeparator}></View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     marginLeft: vw(10),
-    marginTop: vh(30),
+  },
+  mainContainer: {
+    marginTop: vh(20),
   },
   fullBannerImage: {
     height: vh(350),
