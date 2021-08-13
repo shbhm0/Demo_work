@@ -90,20 +90,20 @@ const styles = StyleSheet.create({
   shoeTrends: {
     width: vw(356),
     alignSelf: 'center',
-    height: vh(100),
+    height: vh(130),
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: vh(10),
   },
   shoeTrendsInner: {
     width: vw(100),
-    height: vh(100),
+    height: vh(130),
     marginHorizontal: vw(10),
     marginVertical: vh(4),
   },
   shoeTrendsImage: {
     width: vw(100),
-    height: vh(100),
+    height: vh(130),
   },
   textView: {
     width: '100%',

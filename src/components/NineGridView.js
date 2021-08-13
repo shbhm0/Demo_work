@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   shoeTrends: {
     width: vw(356),
     alignSelf: 'center',
-    height: vh(100),
+    height: vh(120),
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   shoeTrendsImage: {
     width: vw(100),
-    height: vh(80),
+    height: vh(90),
   },
   textView: {
     width: '100%',
