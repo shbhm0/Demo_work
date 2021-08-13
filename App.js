@@ -1,20 +1,12 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import Women from './src/module/bottomtab/toptabScreens/women';
-const App = () => {
+import * as React from 'react';
+import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
+import Women from './src/modules/bottomTabScreens/topTabScreens/Women';
+import {NavigationContainer} from '@react-navigation/native';
+import BottomNavigation from './src/route/BottomNavigation';
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>hiii</Text>
-      <Text>hiii</Text>
-      <Text>hiii</Text>
-      <Text>hiii</Text>
-    </View>
+    <NavigationContainer>
+      <BottomNavigation />
+    </NavigationContainer>
   );
-};
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 100,
-  },
-});
-export default App;
+}
