@@ -23,7 +23,7 @@ export default function SummerEssentials({item}) {
   };
   return (
     <View style={{marginLeft: vw(10), marginTop: vh(30)}}>
-      <Text style={styles.title}>{item.title.toUpperCase()}</Text>
+      <Text style={styles.title}>{item.title}</Text>
       <FlatList
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#222',
     marginVertical: vh(5),
+    textTransform: 'uppercase',
   },
   tag: {
     fontSize: 13,

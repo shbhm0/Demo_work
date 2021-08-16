@@ -6,13 +6,14 @@ import Men from './Men';
 import Kids from './Kids';
 import Beauty from './Beauty';
 import CustomTopTabBar from '../../../components/customTopTabBar';
+import {normalize} from '../../../dimension';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function TopTabBar() {
   return (
     <Tab.Navigator
-      sceneContainerStyle={{backgroundColor: 'white'}}
+      sceneContainerStyle={{backgroundColor: 'white', marginTop: normalize(20)}}
       tabBar={props => <CustomTopTabBar {...props} />}
       initialRouteName={'WOMEN'}>
       <Tab.Screen name="WOMEN" component={Women} />

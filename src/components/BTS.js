@@ -5,7 +5,7 @@ import {vh, vw, normalize, screenWidth, screenHeight} from '../dimension';
 export default function BTS({item}) {
   return (
     <View style={{marginLeft: vw(10), marginTop: vh(30)}}>
-      <Text style={styles.title}>{item.header.title.toUpperCase()}</Text>
+      <Text style={styles.title}>{item.header.title}</Text>
       <Text style={styles.subtitle}>{item.header.subtitle}</Text>
       <Image
         source={{uri: item.items[0].url}}
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#222',
     marginVertical: vh(5),
+    textTransform: 'uppercase',
   },
   subtitle: {
     fontSize: 13,

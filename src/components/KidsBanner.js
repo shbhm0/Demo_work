@@ -11,9 +11,9 @@ export default function BTS({title, subtitle, array}) {
         source={{uri: array[0].url}}
         style={{
           width: '100%',
-          height: vh(190),
+          height: vh(100),
           marginVertical: normalize(5),
-          alignSelf: 'center',
+          // alignSelf: 'center',
         }}
       />
     </View>
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#222',
     marginVertical: vh(5),
-    textTransform: 'uppercase',
   },
   subtitle: {
     fontSize: 13,

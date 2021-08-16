@@ -1,11 +1,16 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, SafeAreaView, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  ActivityIndicator,
+} from 'react-native';
 import {vh, vw, normalize} from '../../../dimension';
 import TwoGridView from '../../../components/TwoGridView';
 import NineGridView from '../../../components/NineGridView';
 import PosterGrid from '../../../components/PosterGrid';
 import Banner from '../../../components/Banner';
-import Separator from '../../../components/Separator';
 import BTS from '../../../components/BTS';
 import SummerEssentials from '../../../components/SummerEssentials';
 import {FlatList} from 'react-native-gesture-handler';
@@ -14,7 +19,9 @@ import FeatureStrip from '/Users/admin/Desktop/Demo_work/src/components/featureS
 import FullWidthBannerSlider from '/Users/admin/Desktop/Demo_work/src/components/fullWidthBanner.js';
 import TwoColumnGrid from '/Users/admin/Desktop/Demo_work/src/components/twocolumngrid.js';
 import {APILinks} from '../../../constant/index';
-
+import ImageSlider from '../../../components/ImageSlider';
+import LineSeperator from '../../../components/LineSeperator';
+import HorizontalSlider from '../../../components/horizontalSliderWithPrice';
 const axios = require('axios');
 export default function App() {
   const [data, setData] = React.useState([]);
@@ -33,8 +40,17 @@ export default function App() {
   const renderItem = ({item}) => {
     return (
       <SafeAreaView>
-        {item.tag === 'New Shoe Trends' ? (
-          <TwoGridView heading={item.header.title} array={item.items} />
+        {item.tag === 'TRENDING STYLES' ? (
+          <View>
+            <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            <TwoGridView
+              data1={item.items}
+              numColumns={2}
+              height={vh(190)}
+              width={vw(170)}
+              array={item.items}
+            />
+          </View>
         ) : null}
         {item.tag === 'Complete Your Shoedrobe' ? (
           <NineGridView
@@ -133,14 +149,82 @@ export default function App() {
             width={vw(340)}
           />
         ) : null}
-        {item.tag === 'ModestWear-Brands' ? (
-          <View style={styles.twogridContainer}>
-            {/* <Text style={styles.sectionHeading}>{item.header.title}</Text> */}
+        {item.tag === 'VUE SLIDER - You May Like' ? (
+          <View>
+            <Text style={styles.sectionHeading}>{item.layout.title}</Text>
+            <FullWidthBannerSlider
+              data1={item.items}
+              horizontal={true}
+              disableIntervalMomentum={true}
+              showsHorizontalScrollIndicator={false}
+              pagingEnabled={true}
+              legacyImplementation={false}
+              height={vh(350)}
+              width={vw(340)}
+            />
+          </View>
+        ) : null}
+        {item.tag === 'Shop & Win' ? (
+          <FullWidthBannerSlider
+            data1={item.items}
+            horizontal={true}
+            disableIntervalMomentum={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled={true}
+            legacyImplementation={false}
+            height={vh(100)}
+            width={vw(350)}
+          />
+        ) : null}
+        {item.tag === 'Strip Banner' ? (
+          <FullWidthBannerSlider
+            data1={item.items}
+            horizontal={true}
+            disableIntervalMomentum={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled={true}
+            legacyImplementation={false}
+            height={vh(150)}
+            width={vw(340)}
+          />
+        ) : null}
+        {item.tag === 'TOP BRANDS' ? (
+          <View>
+            {item.header !== undefined ? (
+              <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            ) : null}
             <TwoColumnGrid
               data1={item.items}
-              numColumns={2}
-              height={vh(190)}
+              numColumns={3}
+              height={vh(230)}
               width={vw(170)}
+              array={item.items}
+            />
+          </View>
+        ) : null}
+        {item.tag === 'SHOP BY CATEGORY' ? (
+          <View style={styles.twogridContainer}>
+            <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            <TwoColumnGrid
+              data1={item.items}
+              numColumns={3}
+              height={vh(110)}
+              width={vw(110)}
+            />
+          </View>
+        ) : null}
+        {item.tag === 'FEATURED SHOPS' ? (
+          <View>
+            <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            <FullWidthBannerSlider
+              data1={item.items}
+              horizontal={true}
+              disableIntervalMomentum={true}
+              showsHorizontalScrollIndicator={false}
+              pagingEnabled={true}
+              legacyImplementation={false}
+              height={vh(170)}
+              width={vw(150)}
             />
           </View>
         ) : null}
@@ -172,17 +256,28 @@ export default function App() {
             />
           </View>
         ) : null}
+        {/*Aman's Code*/}
+        {item.type == 'line_separator' ? (
+          <LineSeperator seperatorWidth={1} seperatorColor={item.color} />
+        ) : null}
+        {item.type == 'influencer_slider' ? <ImageSlider data={item} /> : null}
       </SafeAreaView>
     );
   };
 
   return (
-    <FlatList
-      nestedScrollEnabled={false}
-      data={data}
-      keyExtractor={ite => ite + Math.random()}
-      renderItem={renderItem}
-    />
+    <View style={styles.mainContainer}>
+      {data.length == 0 ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <FlatList
+          nestedScrollEnabled={false}
+          data={data}
+          keyExtractor={ite => ite + Math.random()}
+          renderItem={renderItem}
+        />
+      )}
+    </View>
   );
 }
 
@@ -191,6 +286,9 @@ const styles = StyleSheet.create({
     marginHorizontal: vw(10),
     marginVertical: vh(10),
     fontSize: normalize(16),
+  },
+  mainContainer: {
+    marginTop: normalize(20),
   },
   shoeTrends: {
     width: vw(356),

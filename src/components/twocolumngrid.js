@@ -25,7 +25,6 @@ const TwoColumnGrid = props => {
         renderItem={circularSlider}
         numColumns={props.numColumns}
       />
-      <View style={styles.lineSeparator}></View>
     </View>
   );
 };
@@ -33,10 +32,13 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: vw(10),
     marginTop: vh(20),
-    marginBottom: vh(20),
+    marginBottom: vh(10),
   },
   fullBannerImage: {
     marginRight: 15,
+  },
+  mainContainer: {
+    marginBottom: vh(20),
   },
   labelFont: {
     fontSize: vh(10),
