@@ -9,9 +9,11 @@ import Categories from '../modules/bottomTabScreens/Categories';
 import Wishlist from '../modules/bottomTabScreens/Wishlist';
 import {vh, vw, normalize} from '../dimension';
 import Index from '../modules/bottomTabScreens/topTabScreens/index';
+import {useTranslation} from 'react-i18next';
 const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
+  const {t} = useTranslation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -25,7 +27,7 @@ export default function MyTabs() {
           backgroundColor: 'red',
         }}>
         <Tab.Screen
-          name="Home"
+          name={t('Home')}
           component={Index}
           options={{
             tabBarIcon: ({focused}) => {
@@ -50,7 +52,7 @@ export default function MyTabs() {
           }}
         />
         <Tab.Screen
-          name="Categories"
+          name={t('Categories')}
           options={{
             tabBarIcon: ({focused}) => {
               return focused ? (
@@ -75,7 +77,7 @@ export default function MyTabs() {
           component={Categories}
         />
         <Tab.Screen
-          name="Brands"
+          name={t('Brands')}
           options={{
             tabBarIcon: ({focused}) => {
               return focused ? (
@@ -100,7 +102,7 @@ export default function MyTabs() {
           component={Brands}
         />
         <Tab.Screen
-          name="Wishlist"
+          name={t('Wishlist')}
           options={{
             tabBarIcon: ({focused}) => {
               return focused ? (
@@ -125,7 +127,7 @@ export default function MyTabs() {
           component={Wishlist}
         />
         <Tab.Screen
-          name="Account"
+          name={t('Account')}
           options={{
             tabBarIcon: ({focused}) => {
               return focused ? (

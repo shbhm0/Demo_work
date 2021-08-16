@@ -5,6 +5,8 @@ import {
   StyleSheet,
   SafeAreaView,
   ActivityIndicator,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import {vh, vw, normalize} from '../../../dimension';
 import TwoGridView from '../../../components/TwoGridView';
@@ -18,23 +20,33 @@ import Slider from '/Users/admin/Desktop/Demo_work/src/components/slider.js';
 import FeatureStrip from '/Users/admin/Desktop/Demo_work/src/components/featureStrip.js';
 import FullWidthBannerSlider from '/Users/admin/Desktop/Demo_work/src/components/fullWidthBanner.js';
 import TwoColumnGrid from '/Users/admin/Desktop/Demo_work/src/components/twocolumngrid.js';
-import {APILinks} from '../../../constant/index';
+import {APILinks, ArabicAPI} from '../../../constant/index';
 import ImageSlider from '../../../components/ImageSlider';
 import LineSeperator from '../../../components/LineSeperator';
 import HorizontalSlider from '../../../components/horizontalSliderWithPrice';
+import i18n from 'i18next';
+import {useTranslation} from 'react-i18next';
 const axios = require('axios');
 export default function App() {
   const [data, setData] = React.useState([]);
-  React.useEffect(() => {
-    axios
-      .get(APILinks.women)
-      .then(function (response) {
-        console.log(response.data.data);
+  const {t} = useTranslation();
+  async function apicall(APILink) {
+    await axios
+      .get(APILink)
+      .then(response => {
         setData(response.data.data);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(error => {
+        console.log('Error: ', error);
       });
+  }
+  React.useEffect(() => {
+    if (i18n.language === 'ar') {
+      apicall(ArabicAPI.women);
+    } else {
+      apicall(APILinks.women);
+    }
+    // apicall(APILinks.women);
   }, []);
 
   const renderItem = ({item}) => {
@@ -42,7 +54,9 @@ export default function App() {
       <SafeAreaView>
         {item.tag === 'TRENDING STYLES' ? (
           <View>
-            <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            {item.header !== undefined ? (
+              <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            ) : null}
             <TwoGridView
               data1={item.items}
               numColumns={2}
@@ -264,19 +278,27 @@ export default function App() {
       </SafeAreaView>
     );
   };
-
   return (
     <View style={styles.mainContainer}>
-      {data.length == 0 ? (
-        <ActivityIndicator size="large" />
-      ) : (
+      <View>
         <FlatList
-          nestedScrollEnabled={false}
+          keyExtractor={() => Math.random().toString()}
           data={data}
-          keyExtractor={ite => ite + Math.random()}
           renderItem={renderItem}
+          contentContainerStyle={styles.flatlistStyles}
         />
-      )}
+        <TouchableOpacity
+          style={styles.langIconBox}
+          onPress={() => {
+            apicall(ArabicAPI.women);
+            i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
+          }}>
+          <Image
+            source={require('/Users/admin/Desktop/Demo_work/src/assets/footerIcons/language.png')}
+            style={styles.langIcon}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -321,5 +343,20 @@ const styles = StyleSheet.create({
     fontSize: vh(17),
     marginTop: vh(30),
     marginLeft: vw(10),
+  },
+  langIconBox: {
+    backgroundColor: '#eee',
+    height: vh(60),
+    width: vw(60),
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: normalize(30),
+    position: 'absolute',
+    right: vw(20),
+    bottom: vh(40),
+  },
+  langIcon: {
+    height: vh(30),
+    width: vw(30),
   },
 });

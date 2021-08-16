@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import {vh, vw, normalize} from '../dimension';
 import Input from './CustomTextInput';
+import {useTranslation} from 'react-i18next';
 
 function CustomTopTabBar({state, descriptors, navigation}) {
+  const {t} = useTranslation();
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   const ref = React.useRef(null);
 
@@ -22,7 +24,7 @@ function CustomTopTabBar({state, descriptors, navigation}) {
     <SafeAreaView>
       <View style={styles.outertoptab}>
         <View style={styles.header}>
-          <Text style={styles.headingLogo}>6THSTREET</Text>
+          <Text style={styles.headingLogo}>{t('6THSTREET')}</Text>
           <View style={styles.iconsBox}>
             <Image
               source={require('../assets/footerIcons/bellN.png')}
@@ -43,7 +45,7 @@ function CustomTopTabBar({state, descriptors, navigation}) {
           <Input
             ref={ref}
             style={styles.textInput}
-            placeholder={'What are you looking for?'}
+            placeholder={t('What are you looking for?')}
           />
           <Image
             source={require('../assets/footerIcons/voice.png')}
