@@ -13,15 +13,14 @@ import Slider from '/Users/admin/Desktop/Demo_work/src/components/slider.js';
 import FeatureStrip from '/Users/admin/Desktop/Demo_work/src/components/featureStrip.js';
 import FullWidthBannerSlider from '/Users/admin/Desktop/Demo_work/src/components/fullWidthBanner.js';
 import TwoColumnGrid from '/Users/admin/Desktop/Demo_work/src/components/twocolumngrid.js';
+import {APILinks} from '../../../constant/index';
 
 const axios = require('axios');
 export default function App() {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios
-      .get(
-        'https://mobilecdn.6thstreet.com/resources/20191010_staging/en-ae/women.json',
-      )
+      .get(APILinks.women)
       .then(function (response) {
         console.log(response.data.data);
         setData(response.data.data);
@@ -119,10 +118,10 @@ export default function App() {
         {item.type === 'circleItemSlider' ? (
           <Slider data1={item.items} />
         ) : null}
-        {item.type === 'fullWidthBannerSlider' && item.index === 29 ? (
+        {item.tag === 'Feature-Strips' ? (
           <FeatureStrip data1={item.items} />
         ) : null}
-        {item.type === 'fullWidthBannerSlider' && item.index === 54 ? (
+        {item.tag === 'Aug New lunch Hero banner' ? (
           <FullWidthBannerSlider
             data1={item.items}
             horizontal={true}
@@ -134,9 +133,9 @@ export default function App() {
             width={vw(340)}
           />
         ) : null}
-        {item.type === 'grid' && item.index === 4 ? (
+        {item.tag === 'ModestWear-Brands' ? (
           <View style={styles.twogridContainer}>
-            <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            {/* <Text style={styles.sectionHeading}>{item.header.title}</Text> */}
             <TwoColumnGrid
               data1={item.items}
               numColumns={2}
@@ -145,14 +144,13 @@ export default function App() {
             />
           </View>
         ) : null}
-        {item.type === 'banner' &&
-        (item.index === 20 ||
-          item.index === 21 ||
-          item.index === 22 ||
-          item.index === 23 ||
-          item.index === 24) ? (
+        {item.tag === 'Premium-Tommy Hilfiger ' ||
+        item.tag === 'Premium-Calvin Klein' ||
+        item.tag === 'Premium-Lacoste' ||
+        item.tag === 'Premium-Cole Haan' ||
+        item.tag === 'Premium-Guess' ? (
           <View style={styles.premiumEdit}>
-            {item.header != undefined ? (
+            {item.header !== undefined ? (
               <Text style={styles.sectionHeading}>{item.header.title}</Text>
             ) : null}
             <FullWidthBannerSlider
@@ -163,7 +161,7 @@ export default function App() {
             />
           </View>
         ) : null}
-        {item.type === 'grid' && item.index === 46 ? (
+        {item.tag === 'More Brands-4grid' ? (
           <View style={styles.moreBrands}>
             <Text style={styles.sectionHeading}>{item.header.title}</Text>
             <TwoColumnGrid

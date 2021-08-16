@@ -36,10 +36,7 @@ const styles = StyleSheet.create({
     marginBottom: vh(20),
   },
   fullBannerImage: {
-    height: vh(190),
-    width: vw(170),
     marginRight: 15,
-    marginBottom: 15,
   },
   labelFont: {
     fontSize: vh(10),

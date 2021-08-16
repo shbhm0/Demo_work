@@ -1,17 +1,17 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, {Component} from 'react';
+import {View, Text} from 'react-native';
 
-export default function Men(){
-    return(
-        <View style = {styles.mainContainer}>
-            <Text>Mens Screen</Text>
-        </View>
-    )
+export default class Men extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <View>
+        <Text> Men </Text>
+      </View>
+    );
+  }
 }
-const styles = StyleSheet.create({
-    mainContainer:{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    }
-})

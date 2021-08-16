@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     marginTop: vh(30),
   },
   fullBannerImage: {
-    height: vh(40),
+    height: vh(55),
     width: vw(345),
     marginRight: vw(15),
   },
