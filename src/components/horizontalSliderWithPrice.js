@@ -1,6 +1,6 @@
 import React from 'react';
-import {FlatList, StyleSheet, View, Image} from 'react-native';
-import {vh, vw} from '../dimension.js';
+import {FlatList, StyleSheet, View, Image, Text} from 'react-native';
+import {vh, vw, normalize} from '../dimension.js';
 
 const FullSlider = props => {
   const circularSlider = ({item}) => {
@@ -13,6 +13,10 @@ const FullSlider = props => {
           ]}
           source={{uri: item.url}}
         />
+        <View style={styles.textView}>
+          <Text style={styles.titleText}>{item.footer.title}</Text>
+          <Text style={styles.titleSubText}>{item.footer.subtitle}</Text>
+        </View>
       </View>
     );
   };
@@ -53,6 +57,19 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 10,
     marginRight: 10,
+  },
+  textView: {
+    width: '100%',
+    alignItems: 'center',
+    marginVertical: vh(6),
+  },
+  titleText: {
+    color: 'gray',
+    fontSize: normalize(11),
+  },
+  titleSubText: {
+    color: 'gray',
+    fontSize: normalize(10),
   },
 });
 export default FullSlider;

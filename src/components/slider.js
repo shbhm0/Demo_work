@@ -1,10 +1,6 @@
 import React from 'react';
 import {FlatList, Text, StyleSheet, View, Image} from 'react-native';
-import {
-  vh,
-  vw,
-  normalize,
-} from '/Users/admin/Desktop/Demo_work/src/dimension.js';
+import {vh, vw, normalize} from '../dimension.js';
 
 const Slider = props => {
   const circularSlider = ({item}) => {
