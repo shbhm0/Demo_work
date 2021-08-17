@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, StyleSheet, View, Image} from 'react-native';
-import {vh, vw} from '../dimension.js';
+import {vh, vw} from '../dimension';
 
 const FullSlider = props => {
   const circularSlider = ({item}) => {
@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
     marginTop: vh(20),
   },
   fullBannerImage: {
-    height: vh(350),
-    width: vw(340),
     marginRight: vw(15),
   },
   labelFont: {

@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 import {vh, vw, normalize} from '../../../dimension';
 import TwoGridView from '../../../components/TwoGridView';
-import NineGridView from '../../../components/NineGridView';
-import PosterGrid from '../../../components/PosterGrid';
+
 import Banner from '../../../components/Banner';
 import BTS from '../../../components/BTS';
 import KidsBanner from '../../../components/KidsBanner';
@@ -59,10 +58,12 @@ export default function App() {
           </View>
         ) : null}
         {item.tag === 'ShoedRobe' ? (
-          <NineGridView
-            heading={item.header.title}
+          <TwoGridView
+            data1={item.items}
+            numColumns={3}
+            height={vh(115)}
+            width={vw(104)}
             array={item.items}
-            tag={item.tag}
           />
         ) : null}
         {item.tag === 'BTS- Top Deals New' ? (
@@ -78,15 +79,23 @@ export default function App() {
           />
         ) : null}
         {item.tag === '1.BabyGirl-0-2-Y-Banner' ? (
-          <KidsBanner
-            array={item.items}
-            tag={item.tag}
-            title={item.header.title}
-            subtitle={item.header.subtitle}
-          />
+          <View style={styles.babyGirl}>
+            <KidsBanner
+              array={item.items}
+              tag={item.tag}
+              title={item.header.title}
+              subtitle={item.header.subtitle}
+            />
+          </View>
         ) : null}
         {item.tag === '1.BabyGirl-0-2-Y-Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoGridView
+            data1={item.items}
+            numColumns={3}
+            height={vh(120)}
+            width={vw(108)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === '2.BabyBoy-0-2-Y-Banner' ? (
           <KidsBanner
@@ -97,7 +106,13 @@ export default function App() {
           />
         ) : null}
         {item.tag === '2.BabyBoy-0-2-Y-Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoGridView
+            data1={item.items}
+            numColumns={3}
+            height={vh(120)}
+            width={vw(108)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === '3.ToddlerGirl-2-8-Y-Banner' ? (
           <KidsBanner
@@ -108,7 +123,13 @@ export default function App() {
           />
         ) : null}
         {item.tag === '3.ToddlerGirl-2-8-Y-Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoGridView
+            data1={item.items}
+            numColumns={3}
+            height={vh(120)}
+            width={vw(108)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === '4.ToddlerBoy-2-8-Y-Banner' ? (
           <KidsBanner
@@ -119,7 +140,13 @@ export default function App() {
           />
         ) : null}
         {item.tag === '4.ToddlerBoy-2-8-Y-Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoGridView
+            data1={item.items}
+            numColumns={3}
+            height={vh(120)}
+            width={vw(108)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === '5.Girl-8+Y-Banner' ? (
           <KidsBanner
@@ -130,7 +157,13 @@ export default function App() {
           />
         ) : null}
         {item.tag === '5.Girl-8+Y-Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoGridView
+            data1={item.items}
+            numColumns={3}
+            height={vh(120)}
+            width={vw(108)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === '6.Boy-8+Y-Banner' ? (
           <KidsBanner
@@ -141,7 +174,12 @@ export default function App() {
           />
         ) : null}
         {item.tag === '6.Boy-8+Y-Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoColumnGrid
+            data1={item.items}
+            numColumns={3}
+            height={vh(120)}
+            width={vw(108)}
+          />
         ) : null}
 
         {item.tag === 'New Arrival 2 Grid' ? (
@@ -217,20 +255,21 @@ export default function App() {
             />
           </View>
         ) : null}
-        {item.tag === 'Explore more- Women' ? (
-          <KidsBanner
-            array={item.items}
-            tag={item.tag}
-            title={item.header.title}
-            subtitle={item.header.subtitle}
-          />
-        ) : null}
-        {item.tag === 'Explore more-Beauty' ? (
-          <KidsBanner array={item.items} tag={item.tag} />
-        ) : null}
-
-        {item.tag === 'Explore more-Men' ? (
-          <KidsBanner array={item.items} tag={item.tag} />
+        {item.tag === 'Explore more- Women' ||
+        item.tag === 'Explore more-Beauty' ||
+        item.tag === 'Explore more-Men' ? (
+          <View>
+            {item.header !== undefined ? (
+              <KidsBanner
+                array={item.items}
+                tag={item.tag}
+                title={item.header.title}
+                subtitle={item.header.subtitle}
+              />
+            ) : (
+              <KidsBanner array={item.items} tag={item.tag} />
+            )}
+          </View>
         ) : null}
       </SafeAreaView>
     );
@@ -261,6 +300,9 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     marginTop: normalize(20),
+  },
+  babyGirl: {
+    marginTop: vh(20),
   },
   shoeTrends: {
     width: vw(356),
