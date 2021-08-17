@@ -4,14 +4,11 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  ActivityIndicator,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import {vh, vw, normalize} from '../../../dimension';
 import TwoGridView from '../../../components/TwoGridView';
-import NineGridView from '../../../components/NineGridView';
-import PosterGrid from '../../../components/PosterGrid';
 import Banner from '../../../components/Banner';
 import BTS from '../../../components/BTS';
 import SummerEssentials from '../../../components/SummerEssentials';
@@ -23,7 +20,6 @@ import TwoColumnGrid from '/Users/admin/Desktop/Demo_work/src/components/twocolu
 import {APILinks, ArabicAPI} from '../../../constant/index';
 import ImageSlider from '../../../components/ImageSlider';
 import LineSeperator from '../../../components/LineSeperator';
-import HorizontalSlider from '../../../components/horizontalSliderWithPrice';
 import i18n from 'i18next';
 import {useTranslation} from 'react-i18next';
 const axios = require('axios');
@@ -67,10 +63,12 @@ export default function App() {
           </View>
         ) : null}
         {item.tag === 'Complete Your Shoedrobe' ? (
-          <NineGridView
-            heading={item.header.title}
+          <TwoGridView
+            data1={item.items}
+            numColumns={2}
+            height={vh(190)}
+            width={vw(170)}
             array={item.items}
-            tag={item.tag}
           />
         ) : null}
         {item.tag === 'Running Banner' ? (
@@ -82,15 +80,21 @@ export default function App() {
           />
         ) : null}
         {item.tag === 'Sport-Brands' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoGridView
+            data1={item.items}
+            numColumns={2}
+            height={vh(190)}
+            width={vw(170)}
+            array={item.items}
+          />
         ) : null}
-        {item.tag === 'Complete Your Wardrobe-Grid' ? (
+        {/* {item.tag === 'Complete Your Wardrobe-Grid' ? (
           <NineGridView
             heading={item.header.title}
             array={item.items}
             tag={item.tag}
           />
-        ) : null}
+        ) : null} */}
         {item.tag === 'Bags- Section' ? (
           <Banner
             array={item.items}
@@ -100,13 +104,21 @@ export default function App() {
           />
         ) : null}
         {item.tag === 'Bags - Brands 3 Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoGridView
+            data1={item.items}
+            numColumns={2}
+            height={vh(190)}
+            width={vw(170)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === 'Clothing Brands we love' ? (
-          <PosterGrid
+          <TwoGridView
+            data1={item.items}
+            numColumns={2}
+            height={vh(190)}
+            width={vw(170)}
             array={item.items}
-            tag={item.tag}
-            heading={item.header.title}
           />
         ) : null}
         {item.tag === 'Modest Wear-Section' ? (
@@ -118,7 +130,13 @@ export default function App() {
           />
         ) : null}
         {item.tag === 'ModestWear-Brands' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoColumnGrid
+            data1={item.items}
+            numColumns={3}
+            height={vh(120)}
+            width={vw(106)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === 'Sports Athleisure' ? (
           <Banner
@@ -137,7 +155,13 @@ export default function App() {
           />
         ) : null}
         {item.tag === 'Lingeries-Grid' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoColumnGrid
+            data1={item.items}
+            numColumns={3}
+            height={normalize(150)}
+            width={vw(107)}
+            array={item.items}
+          />
         ) : null}
         {/* Aman Shukla code*/}
         {item.tag == 'BTS-Entry Banner' ? <BTS item={item} /> : null}
@@ -210,8 +234,8 @@ export default function App() {
             <TwoColumnGrid
               data1={item.items}
               numColumns={3}
-              height={vh(230)}
-              width={vw(170)}
+              height={normalize(230)}
+              width={normalize(170)}
               array={item.items}
             />
           </View>
@@ -237,8 +261,8 @@ export default function App() {
               showsHorizontalScrollIndicator={false}
               pagingEnabled={true}
               legacyImplementation={false}
-              height={vh(170)}
-              width={vw(150)}
+              height={normalize(170)}
+              width={normalize(150)}
             />
           </View>
         ) : null}

@@ -10,10 +10,9 @@ export default function BTS({title, subtitle, array}) {
       <Image
         source={{uri: array[0].url}}
         style={{
-          width: '100%',
-          height: vh(190),
+          width: 360,
+          height: vh(230),
           marginVertical: normalize(5),
-          alignSelf: 'center',
         }}
       />
     </View>
@@ -31,9 +30,7 @@ const styles = StyleSheet.create({
     color: '#222',
   },
   container: {
-    width: '90%',
-    marginLeft: '5%',
     marginTop: vh(30),
-    marginBottom: vh(-20),
+    marginLeft: vw(10),
   },
 });

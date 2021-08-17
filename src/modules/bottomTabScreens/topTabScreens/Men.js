@@ -9,8 +9,6 @@ import {
 import {vh, vw, normalize} from '../../../dimension';
 import KidsBanner from '../../../components/KidsBanner';
 import TwoGridView from '../../../components/TwoGridView';
-import NineGridView from '../../../components/NineGridView';
-import PosterGrid from '../../../components/PosterGrid';
 import Banner from '../../../components/Banner';
 import BTS from '../../../components/BTS';
 import SummerEssentials from '../../../components/SummerEssentials';
@@ -41,10 +39,12 @@ export default function App() {
     return (
       <SafeAreaView>
         {item.tag === 'Complete Your Shoedrobe' ? (
-          <NineGridView
-            heading={item.header.title}
+          <TwoGridView
+            data1={item.items}
+            numColumns={3}
+            height={vh(110)}
+            width={vw(107)}
             array={item.items}
-            tag={item.tag}
           />
         ) : null}
 
@@ -57,7 +57,13 @@ export default function App() {
           />
         ) : null}
         {item.tag === 'Sport-Brands' ? (
-          <PosterGrid array={item.items} tag={item.tag} />
+          <TwoColumnGrid
+            data1={item.items}
+            numColumns={3}
+            height={vh(110)}
+            width={vw(106)}
+            array={item.items}
+          />
         ) : null}
         {item.tag === 'Sports Athleisure' ? (
           <Banner
@@ -83,18 +89,30 @@ export default function App() {
         ) : null}
 
         {item.tag === 'Complete Your Wardrobe-Grid' ? (
-          <PosterGrid
-            array={item.items}
-            tag={item.tag}
-            heading={item.header.title}
-          />
+          <View>
+            <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            <TwoColumnGrid
+              data1={item.items}
+              numColumns={3}
+              height={vh(120)}
+              width={vw(106)}
+              array={item.items}
+            />
+          </View>
         ) : null}
         {item.tag === 'Clothing Brands we love' ? (
-          <PosterGrid
-            array={item.items}
-            tag={item.tag}
-            heading={item.header.title}
-          />
+          <View>
+            {item.header !== undefined ? (
+              <Text style={styles.sectionHeading}>{item.header.title}</Text>
+            ) : null}
+            <TwoColumnGrid
+              data1={item.items}
+              numColumns={3}
+              height={normalize(120)}
+              width={normalize(106)}
+              array={item.items}
+            />
+          </View>
         ) : null}
         {item.tag === 'Traditional Sandals-Banner' ? (
           <Banner
@@ -104,24 +122,6 @@ export default function App() {
             subtitle={item.header.subtitle}
           />
         ) : null}
-        {item.tag === 'Premium Edit-Tommy Hilfiger' ? (
-          <Banner
-            array={item.items}
-            tag={item.tag}
-            title={item.header.title}
-            subtitle={item.header.subtitle}
-          />
-        ) : null}
-        {item.tag === 'Premium Edits-Calvin Klein' ? (
-          <Banner array={item.items} tag={item.tag} />
-        ) : null}
-        {item.tag === 'Premium Edits-Lacoste' ? (
-          <Banner array={item.items} tag={item.tag} />
-        ) : null}
-        {item.tag === 'Premium Edits-Cole Haan' ? (
-          <Banner array={item.items} tag={item.tag} />
-        ) : null}
-
         {/* Aman Shukla code*/}
         {item.tag == 'BTS-Entry Banner' ? <BTS item={item} /> : null}
         {item.tag == 'Summer Essentials' ? (
@@ -166,12 +166,12 @@ export default function App() {
             />
           </View>
         ) : null}
-        {item.tag === 'Premium-Tommy Hilfiger ' ||
-        item.tag === 'Premium-Calvin Klein' ||
-        item.tag === 'Premium-Lacoste' ||
-        item.tag === 'Premium-Cole Haan' ? (
+        {item.tag === 'Premium Edit-Tommy Hilfiger' ||
+        item.tag === 'Premium Edits-Calvin Klein' ||
+        item.tag === 'Premium Edits-Lacoste' ||
+        item.tag === 'Premium Edits-Cole Haan' ? (
           <View style={styles.premiumEdit}>
-            {item.header != undefined ? (
+            {item.header !== undefined ? (
               <Text style={styles.sectionHeading}>{item.header.title}</Text>
             ) : null}
             <FullWidthBannerSlider

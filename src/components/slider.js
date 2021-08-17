@@ -1,10 +1,13 @@
 import React from 'react';
-import {FlatList, Text, StyleSheet, View, Image} from 'react-native';
 import {
-  vh,
-  vw,
-  normalize,
-} from '/Users/admin/Desktop/Demo_work/src/dimension.js';
+  FlatList,
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  PixelRatio,
+} from 'react-native';
+import {vh, vw, normalize} from '../dimension';
 
 const Slider = props => {
   const circularSlider = ({item}) => {
@@ -44,9 +47,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   roundImage: {
-    height: vh(75),
-    width: vw(75),
-    borderRadius: normalize(50),
+    height: normalize(75),
+    width: normalize(75),
+    borderRadius: normalize(75 / 2),
   },
   fullBannerImage: {
     height: vh(40),
@@ -54,11 +57,11 @@ const styles = StyleSheet.create({
     marginRight: vw(15),
   },
   roundImageContainer: {
-    height: vh(85),
-    width: vw(85),
+    height: normalize(85),
+    width: normalize(85),
     borderWidth: 0.5,
     borderColor: 'pink',
-    borderRadius: normalize(50),
+    borderRadius: normalize(85 / 2),
     alignItems: 'center',
     justifyContent: 'center',
   },
