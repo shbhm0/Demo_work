@@ -27,7 +27,7 @@ export default function SummerEssentials({item}) {
       <FlatList
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={item => item.index}
         data={item.items}
         ItemSeparatorComponent={seperator}
         renderItem={renderData}

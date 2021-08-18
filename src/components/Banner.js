@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {vh, vw, normalize} from '../dimension';
 
-export default function BTS({title, subtitle, array}) {
+export default function Banner({title, subtitle, array}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>

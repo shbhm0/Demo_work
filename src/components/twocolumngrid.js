@@ -4,7 +4,6 @@ import {vh, vw} from '/Users/admin/Desktop/Demo_work/src/dimension.js';
 
 const TwoColumnGrid = props => {
   const circularSlider = ({item}) => {
-    console.log(item, 'twocolumn');
     return (
       <View style={styles.mainContainer}>
         <Image
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: vw(10),
     marginTop: vh(20),
-    marginBottom: vh(10),
+    // marginBottom: vh(10),
   },
   fullBannerImage: {
     marginRight: 15,

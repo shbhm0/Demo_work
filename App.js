@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 
 import './src/i18next';
 import {NavigationContainer} from '@react-navigation/native';

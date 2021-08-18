@@ -14,8 +14,6 @@ export default function ImageSlider(props) {
   const [selectedDot, setSelectedDot] = React.useState(0);
   const scrollRef = React.createRef();
 
-  console.log('InfluencerData: ', InfluencerData['influencers']);
-
   const setSelectedIndex = event => {
     const viewSize = event.nativeEvent.layoutMeasurement.width;
     const contentOffset = event.nativeEvent.contentOffset.x;

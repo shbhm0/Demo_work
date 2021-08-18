@@ -4,7 +4,6 @@ import {vh, vw, normalize} from '../dimension';
 
 const TwoColumnGrid = props => {
   const circularSlider = ({item}) => {
-    console.log(item, 'twocolumn');
     return (
       <View style={styles.mainContainer}>
         <Image

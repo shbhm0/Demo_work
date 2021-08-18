@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View, SafeAreaView} from 'react-native';
-import Women from './topTabScreens/Women';
+import Women from '../../modules/bottomTabScreens/topTabScreens/women';
 import TopTabBar from './topTabScreens';
 export default function HomeScreen() {
   return (

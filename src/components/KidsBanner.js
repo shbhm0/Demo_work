@@ -25,10 +25,8 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 13,
     color: '#222',
-    marginBottom: vh(15),
   },
   container: {
-    width: '90%',
     marginLeft: vw(10),
     marginRight: vw(10),
   },
