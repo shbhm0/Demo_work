@@ -17,8 +17,9 @@ import {useTranslation} from 'react-i18next';
 import {NavigationEvents} from 'react-navigation';
 import RNRestart from 'react-native-restart';
 import styles from '../women/styles';
+import TopTabBar from "../index"
 const axios = require('axios');
-export default function Women({navigation}) {
+export default function Women({navigation: {setParams}}) {
   const [data, setData] = React.useState([]);
   const {t} = useTranslation();
   async function apicall(APILink) {
@@ -38,6 +39,12 @@ export default function Women({navigation}) {
       apicall(APILinks.women);
     }
   }, []);
+  const handleOnScroll = (event) => {
+    // navigation.setOptions({tabBarScrollEnabled: true})
+    const currentOffset = event.nativeEvent.contentOffset.y;
+    // console.log("Y: ", currentOffset)
+    setParams({Y: currentOffset})
+  }
 
   const renderItem = ({item}) => {
     switch (item.tag) {
@@ -327,8 +334,10 @@ export default function Women({navigation}) {
     <View style={styles.mainContainer}>
       <View>
         <FlatList
+        // ListHeaderComponent = {TopTabBar}
           keyExtractor={item => item.index}
           data={data}
+          onScroll = {handleOnScroll}
           renderItem={renderItem}
           contentContainerStyle={styles.flatlistStyles}
         />

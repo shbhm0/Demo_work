@@ -8,6 +8,8 @@ import Beauty from '../topTabScreens/beauty';
 import CustomTopTabBar from '../../../components/customTopTabBar';
 import {normalize} from '../../../dimension';
 import {useTranslation} from 'react-i18next';
+import * as Props from "../../../constant/toptabprops.json"
+
 const Tab = createMaterialTopTabNavigator();
 
 export default function TopTabBar() {
@@ -16,6 +18,7 @@ export default function TopTabBar() {
     <Tab.Navigator
       sceneContainerStyle={{backgroundColor: 'white', marginTop: normalize(20)}}
       tabBar={props => <CustomTopTabBar {...props} />}
+      // tabBar = {props => Props.props == props}
       initialRouteName={'WOMEN'}>
       <Tab.Screen name={t('WOMEN')} component={Women} />
       <Tab.Screen name={t('MEN')} component={Men} />
