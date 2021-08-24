@@ -8,7 +8,6 @@ import Beauty from '../topTabScreens/beauty';
 import CustomTopTabBar from '../../../components/customTopTabBar';
 import {normalize} from '../../../dimension';
 import {useTranslation} from 'react-i18next';
-import * as Props from "../../../constant/toptabprops.json"
 
 const Tab = createMaterialTopTabNavigator();
 
