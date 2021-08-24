@@ -53,7 +53,7 @@ export default function Women({navigation: {setParams}, navigation}) {
         return <Slider data1={item.items} />;
       case 'Feature-Strips':
         return <FeatureStrip data1={item.items} />;
-      case 'Aug New lunch Hero banner':
+      case 'Hero carousel':
         return (
           <FullWidthBannerSlider
             data1={item.items}

@@ -10,7 +10,7 @@ export default function Banner({title, subtitle, array}) {
       <Image
         source={{uri: array[0].url}}
         style={{
-          width: 360,
+          width: vw(345),
           height: vh(230),
           marginVertical: normalize(5),
         }}
