@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, StyleSheet, View, Image} from 'react-native';
-import {vh, vw} from '/Users/admin/Desktop/Demo_work/src/dimension.js';
+import {vh, vw} from '../dimension.js';
 
 const TwoColumnGrid = props => {
   const circularSlider = ({item}) => {

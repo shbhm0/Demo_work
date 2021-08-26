@@ -2,20 +2,26 @@ import React from 'react';
 import {FlatList, StyleSheet, View, Image, Text} from 'react-native';
 import {vh, vw, normalize} from '../dimension';
 
-const TwoColumnGrid = props => {
+const TwoGridView = props => {
   const circularSlider = ({item}) => {
     return (
       <View style={styles.mainContainer}>
-        <Image
-          style={[
-            styles.fullBannerImage,
-            {height: props.height, width: props.width},
-          ]}
-          source={{uri: item.url}}
-        />
-        <View style={styles.textView}>
-          <Text style={styles.titleText}>{item.footer.title}</Text>
-          <Text style={styles.titleSubText}>{item.footer.subtitle}</Text>
+        <View>
+          <Image
+            style={[
+              styles.fullBannerImage,
+              {height: props.height, width: props.width},
+            ]}
+            source={{uri: item.url}}
+          />
+          <View style={styles.textView}>
+            {item.footer !== undefined ? (
+              <Text style={styles.titleText}>{item.footer.title}</Text>
+            ) : null}
+            {item.footer !== undefined ? (
+              <Text style={styles.titleSubText}>{item.footer.subtitle}</Text>
+            ) : null}
+          </View>
         </View>
       </View>
     );
@@ -34,11 +40,13 @@ const TwoColumnGrid = props => {
 const styles = StyleSheet.create({
   container: {
     marginLeft: vw(10),
-    marginTop: vh(20),
     marginBottom: vh(20),
   },
+  // mainContainer: {
+  //   marginTop: 20,
+  // },
   fullBannerImage: {
-    marginRight: 15,
+    marginRight: 10,
   },
   labelFont: {
     fontSize: vh(10),
@@ -58,4 +66,4 @@ const styles = StyleSheet.create({
     fontSize: normalize(10),
   },
 });
-export default TwoColumnGrid;
+export default TwoGridView;

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {vw, vh, normalize} from '../../../../dimension';
+import {vw, vh, normalize} from '../../../dimension';
 export default StyleSheet.create({
   heading: {
     marginHorizontal: vw(10),
@@ -8,9 +8,6 @@ export default StyleSheet.create({
   },
   mainContainer: {
     marginTop: normalize(20),
-  },
-  babyGirl: {
-    marginTop: vh(20),
   },
   shoeTrends: {
     width: vw(356),
@@ -41,7 +38,22 @@ export default StyleSheet.create({
   sectionHeading: {
     textTransform: 'uppercase',
     fontSize: vh(17),
-    marginTop: vh(30),
     marginLeft: vw(10),
+    marginBottom: vh(10),
+  },
+  langIconBox: {
+    backgroundColor: '#eee',
+    height: vh(60),
+    width: vw(60),
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: normalize(30),
+    position: 'absolute',
+    right: vw(20),
+    bottom: vh(40),
+  },
+  langIcon: {
+    height: vh(30),
+    width: vw(30),
   },
 });

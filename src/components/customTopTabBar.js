@@ -10,121 +10,69 @@ import {
 import {vh, vw, normalize} from '../dimension';
 import Input from './CustomTextInput';
 import {useTranslation} from 'react-i18next';
-
-function CustomTopTabBar({state, descriptors, navigation}) {
-  // console.log('navigation props: ', state.routes[0].params.Y);
-  const y = state.routes[0].params != undefined ? state.routes[0].params.Y : 0;
+import {APILinks} from '../constant/index';
+import CustomButton from './CustomButton';
+function CustomTopTabBar({apicall}) {
   const {t} = useTranslation();
-  const focusedOptions = descriptors[state.routes[state.index].key].options;
-  const ref = React.useRef(null);
+  const [selectedBtn, setSelectedBtn] = React.useState([
+    true,
+    false,
+    false,
+    false,
+  ]);
 
-  if (focusedOptions.tabBarVisible === false) {
-    return null;
-  }
-  // console.log("navigation props: ",navigation.getParam("Y", "dauh"))
+  const ref = React.useRef(null);
+  const womenRef = React.useRef(null);
   return (
     <SafeAreaView>
-      {y < 200 ? (
-        <View style={styles.outertoptab}>
-          <View style={styles.header}>
-            <Text style={styles.headingLogo}>{t('6THSTREET')}</Text>
-            <View style={styles.iconsBox}>
-              <Image
-                source={require('../assets/footerIcons/bellN.png')}
-                style={styles.icons}
-              />
-              <Image
-                source={require('../assets/footerIcons/bag.png')}
-                style={styles.icons}
-              />
-            </View>
-          </View>
-
-          <View style={styles.searchBox}>
+      <View style={styles.outertoptab}>
+        <View style={styles.header}>
+          <Text style={styles.headingLogo}>{t('6THSTREET')}</Text>
+          <View style={styles.iconsBox}>
             <Image
-              source={require('../assets/footerIcons/loupe.png')}
+              source={require('../assets/footerIcons/bellN.png')}
               style={styles.icons}
             />
-            <Input
-              ref={ref}
-              style={styles.textInput}
-              placeholder={t('What are you looking for?')}
-            />
             <Image
-              source={require('../assets/footerIcons/voice.png')}
-              style={styles.icons}
-            />
-          </View>
-
-          <View style={styles.mainContainer}>
-            {state.routes.map((route, index) => {
-              const {options} = descriptors[route.key];
-              const label =
-                options.tabBarLabel !== undefined
-                  ? options.tabBarLabel
-                  : options.title !== undefined
-                  ? options.title
-                  : route.name;
-
-              const isFocused = state.index === index;
-
-              const onPress = () => {
-                const event = navigation.emit({
-                  type: 'tabPress',
-                  target: route.key,
-                  canPreventDefault: true,
-                });
-
-                if (!isFocused && !event.defaultPrevented) {
-                  navigation.navigate(route.name);
-                }
-              };
-
-              return (
-                <TouchableOpacity
-                  accessibilityRole="button"
-                  accessibilityState={isFocused ? {selected: true} : {}}
-                  accessibilityLabel={options.tabBarAccessibilityLabel}
-                  testID={options.tabBarTestID}
-                  onPress={onPress}
-                  key={Math.random().toString()}
-                  style={[
-                    styles.eachTabBtn,
-                    {borderBottomColor: isFocused ? '#000' : 'rgba(0,0,0,0)'},
-                  ]}>
-                  <Text
-                    style={{
-                      color: isFocused ? '#000' : '#aaa',
-                      fontSize: normalize(12),
-                      fontWeight: isFocused ? 'bold' : 'normal',
-                      marginVertical: vh(5),
-                    }}>
-                    {label}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </View>
-      ) : (
-        <View style={{marginBottom: -20, marginTop: -20}}>
-          <View style={styles.searchBox}>
-            <Image
-              source={require('../assets/footerIcons/loupe.png')}
-              style={styles.icons}
-            />
-            <Input
-              ref={ref}
-              style={styles.textInput}
-              placeholder={t('What are you looking for?')}
-            />
-            <Image
-              source={require('../assets/footerIcons/voice.png')}
+              source={require('../assets/footerIcons/bag.png')}
               style={styles.icons}
             />
           </View>
         </View>
-      )}
+
+        <View style={styles.searchBox}>
+          <Image
+            source={require('../assets/footerIcons/loupe.png')}
+            style={styles.icons}
+          />
+          <Input
+            ref={ref}
+            style={styles.textInput}
+            placeholder={t('What are you looking for?')}
+          />
+          <Image
+            source={require('../assets/footerIcons/voice.png')}
+            style={styles.icons}
+          />
+        </View>
+
+        <View style={styles.mainContainer}>
+          <CustomButton
+            title="WOMEN"
+            APILinks={APILinks.women}
+            apicall={apicall}
+            ref={womenRef}
+          />
+
+          <CustomButton title="MEN" APILinks={APILinks.men} apicall={apicall} />
+          <CustomButton
+            title="KIDS"
+            APILinks={APILinks.kids}
+            apicall={apicall}
+          />
+          <CustomButton title="BEAUTY" />
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -132,6 +80,7 @@ function CustomTopTabBar({state, descriptors, navigation}) {
 const styles = StyleSheet.create({
   outertoptab: {
     alignItems: 'center',
+    marginBottom: vh(20),
   },
   mainContainer: {
     flexDirection: 'row',
@@ -179,7 +128,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     borderBottomWidth: normalize(3),
-    width: '25%',
+    width: '23%',
+    marginHorizontal: vw(5),
   },
   text: {
     fontSize: normalize(20),
