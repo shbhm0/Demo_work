@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
-import { vh, vw, normalize, screenWidth } from '../dimension';
+import {vh, vw, normalize, screenWidth} from '../dimension';
 import Input from './CustomTextInput';
 import {useTranslation} from 'react-i18next';
 
 export default function FloatingHeader() {
-const searchRef = React.useRef(null);
-const {t} = useTranslation();
+  const searchRef = React.useRef(null);
+  const {t} = useTranslation();
 
   return (
-    <View style = {{width: screenWidth}}>
+    <View style={{width: screenWidth}}>
       <View style={styles.searchBox}>
         <Image
           source={require('../assets/footerIcons/loupe.png')}

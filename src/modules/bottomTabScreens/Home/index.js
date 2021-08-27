@@ -14,7 +14,6 @@ import Banner from '../../../components/Banner';
 import {FlatList} from 'react-native-gesture-handler';
 import Slider from '../../../components/slider';
 import FullWidthBannerSlider from '../../../components/fullWidthBanner';
-import TwoColumnGrid from '../../../components/twocolumngrid';
 import {APILinks, ArabicAPI} from '../../../constant/index';
 import ImageSlider from '../../../components/ImageSlider';
 import LineSeperator from '../../../components/LineSeperator';
@@ -192,20 +191,18 @@ export default function Home({navigation: {setParams}, navigation}) {
           }}>
           <FloatingHeader />
         </Animated.View>
-        <ScrollView
-          onScroll={handleScroll}
-          >
+        <ScrollView onScroll={handleScroll}>
           <View>
-        <CustomTopTabBar apicall={apicall} />
-                  <FlatList
-          // ListHeaderComponent={() => <CustomTopTabBar apicall={apicall} />}
-          keyExtractor={item => item.index}
-          onScroll={handleScroll}
-          data={data}
-          renderItem={renderItem}
-          contentContainerStyle={styles.flatlistStyles}
-        />
-        </View>
+            <CustomTopTabBar apicall={apicall} />
+            <FlatList
+              // ListHeaderComponent={() => <CustomTopTabBar apicall={apicall} />}
+              keyExtractor={item => item.index}
+              onScroll={handleScroll}
+              data={data}
+              renderItem={renderItem}
+              contentContainerStyle={styles.flatlistStyles}
+            />
+          </View>
         </ScrollView>
 
         <TouchableOpacity

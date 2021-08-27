@@ -11,4 +11,3 @@ export const ArabicAPI = {
   men: 'https://mobilecdn.6thstreet.com/resources/20191010_staging/ar-ae/men.json',
   kids: 'https://mobilecdn.6thstreet.com/resources/20191010_staging/ar-ae/kids.json',
 };
-

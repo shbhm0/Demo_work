@@ -11,7 +11,6 @@ import {vh, vw, normalize} from '../dimension';
 import Input from './CustomTextInput';
 import {useTranslation} from 'react-i18next';
 import {APILinks} from '../constant/index';
-import CustomButton from './CustomButton';
 function CustomTopTabBar({apicall}) {
   const {t} = useTranslation();
   const [selectedBtn, setSelectedBtn] = React.useState([
@@ -57,85 +56,85 @@ function CustomTopTabBar({apicall}) {
         </View>
 
         <View style={styles.mainContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            apicall(APILinks.women)
-            setSelectedBtn([true, false, false, false]);
-          }}
-          key={Math.random().toString()}
-          style={[
-            styles.eachTabBtn,
-            {
-              borderBottomColor: selectedBtn[0] ? '#000' : '#fff',
-            },
-          ]}>
-          <Text
-            style={{
-              marginVertical: vh(5),
-              fontSize: normalize(12),
-              fontWeight: selectedBtn[0] ? 'bold' : 'normal',
-            }}>
-            WOMEN
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            apicall(APILinks.men)
+          <TouchableOpacity
+            onPress={() => {
+              apicall(APILinks.women);
+              setSelectedBtn([true, false, false, false]);
+            }}
+            key={Math.random().toString()}
+            style={[
+              styles.eachTabBtn,
+              {
+                borderBottomColor: selectedBtn[0] ? '#000' : '#fff',
+              },
+            ]}>
+            <Text
+              style={{
+                marginVertical: vh(5),
+                fontSize: normalize(12),
+                fontWeight: selectedBtn[0] ? 'bold' : 'normal',
+              }}>
+              WOMEN
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              apicall(APILinks.men);
 
-            setSelectedBtn([false, true, false, false]);
-          }}
-          key={Math.random().toString()}
-          style={[
-            styles.eachTabBtn,
-            {borderBottomColor: selectedBtn[1] ? '#000' : '#fff'},
-          ]}>
-          <Text
-            style={{
-              marginVertical: vh(5),
-              fontSize: normalize(12),
-              fontWeight: selectedBtn[1] ? 'bold' : 'normal',
-            }}>
-            MEN
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            apicall(APILinks.kids)
+              setSelectedBtn([false, true, false, false]);
+            }}
+            key={Math.random().toString()}
+            style={[
+              styles.eachTabBtn,
+              {borderBottomColor: selectedBtn[1] ? '#000' : '#fff'},
+            ]}>
+            <Text
+              style={{
+                marginVertical: vh(5),
+                fontSize: normalize(12),
+                fontWeight: selectedBtn[1] ? 'bold' : 'normal',
+              }}>
+              MEN
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              apicall(APILinks.kids);
 
-            setSelectedBtn([false, false, true, false]);
-          }}
-          key={Math.random().toString()}
-          style={[
-            styles.eachTabBtn,
-            {borderBottomColor: selectedBtn[2] ? '#000' : '#fff'},
-          ]}>
-          <Text
-            style={{
-              marginVertical: vh(5),
-              fontSize: normalize(12),
-              fontWeight: selectedBtn[2] ? 'bold' : 'normal',
-            }}>
-            KIDS
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setSelectedBtn([false, false, false, true]);
-          }}
-          key={Math.random().toString()}
-          style={[
-            styles.eachTabBtn,
-            {borderBottomColor: selectedBtn[3] ? '#000' : '#fff'},
-          ]}>
-          <Text
-            style={{
-              fontSize: normalize(12),
-              marginVertical: vh(5),
-              fontWeight: selectedBtn[3] ? 'bold' : 'normal',
-            }}>
-            BEAUTY
-          </Text>
-        </TouchableOpacity>
+              setSelectedBtn([false, false, true, false]);
+            }}
+            key={Math.random().toString()}
+            style={[
+              styles.eachTabBtn,
+              {borderBottomColor: selectedBtn[2] ? '#000' : '#fff'},
+            ]}>
+            <Text
+              style={{
+                marginVertical: vh(5),
+                fontSize: normalize(12),
+                fontWeight: selectedBtn[2] ? 'bold' : 'normal',
+              }}>
+              KIDS
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedBtn([false, false, false, true]);
+            }}
+            key={Math.random().toString()}
+            style={[
+              styles.eachTabBtn,
+              {borderBottomColor: selectedBtn[3] ? '#000' : '#fff'},
+            ]}>
+            <Text
+              style={{
+                fontSize: normalize(12),
+                marginVertical: vh(5),
+                fontWeight: selectedBtn[3] ? 'bold' : 'normal',
+              }}>
+              BEAUTY
+            </Text>
+          </TouchableOpacity>
           {/* <CustomButton
             title="WOMEN"
             APILinks={APILinks.women}
