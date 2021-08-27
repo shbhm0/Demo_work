@@ -6,6 +6,7 @@ import {
   I18nManager,
   Text,
   Animated,
+  ScrollView,
 } from 'react-native';
 import {vh, vw, normalize} from '../../../dimension';
 import TwoGridView from '../../../components/TwoGridView';
@@ -47,6 +48,12 @@ export default function Home({navigation: {setParams}, navigation}) {
     }
   }, []);
 
+  // const MemoizedCallback = React.useCallback(
+  //   () => {
+  //     return(<CustomTopTabBar apicall={apicall}/>)
+  //   },
+  //   [],
+  // );
   const handleScroll = event => {
     const scrolled = event.nativeEvent.contentOffset.y;
     console.log('Scroleld index: ', scrolled);
@@ -185,14 +192,22 @@ export default function Home({navigation: {setParams}, navigation}) {
           }}>
           <FloatingHeader />
         </Animated.View>
-        <FlatList
-          ListHeaderComponent={() => <CustomTopTabBar apicall={apicall} />}
+        <ScrollView
+          onScroll={handleScroll}
+          >
+          <View>
+        <CustomTopTabBar apicall={apicall} />
+                  <FlatList
+          // ListHeaderComponent={() => <CustomTopTabBar apicall={apicall} />}
           keyExtractor={item => item.index}
           onScroll={handleScroll}
           data={data}
           renderItem={renderItem}
           contentContainerStyle={styles.flatlistStyles}
         />
+        </View>
+        </ScrollView>
+
         <TouchableOpacity
           style={styles.langIconBox}
           onPress={() => {

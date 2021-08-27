@@ -57,7 +57,86 @@ function CustomTopTabBar({apicall}) {
         </View>
 
         <View style={styles.mainContainer}>
-          <CustomButton
+        <TouchableOpacity
+          onPress={() => {
+            apicall(APILinks.women)
+            setSelectedBtn([true, false, false, false]);
+          }}
+          key={Math.random().toString()}
+          style={[
+            styles.eachTabBtn,
+            {
+              borderBottomColor: selectedBtn[0] ? '#000' : '#fff',
+            },
+          ]}>
+          <Text
+            style={{
+              marginVertical: vh(5),
+              fontSize: normalize(12),
+              fontWeight: selectedBtn[0] ? 'bold' : 'normal',
+            }}>
+            WOMEN
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            apicall(APILinks.men)
+
+            setSelectedBtn([false, true, false, false]);
+          }}
+          key={Math.random().toString()}
+          style={[
+            styles.eachTabBtn,
+            {borderBottomColor: selectedBtn[1] ? '#000' : '#fff'},
+          ]}>
+          <Text
+            style={{
+              marginVertical: vh(5),
+              fontSize: normalize(12),
+              fontWeight: selectedBtn[1] ? 'bold' : 'normal',
+            }}>
+            MEN
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            apicall(APILinks.kids)
+
+            setSelectedBtn([false, false, true, false]);
+          }}
+          key={Math.random().toString()}
+          style={[
+            styles.eachTabBtn,
+            {borderBottomColor: selectedBtn[2] ? '#000' : '#fff'},
+          ]}>
+          <Text
+            style={{
+              marginVertical: vh(5),
+              fontSize: normalize(12),
+              fontWeight: selectedBtn[2] ? 'bold' : 'normal',
+            }}>
+            KIDS
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setSelectedBtn([false, false, false, true]);
+          }}
+          key={Math.random().toString()}
+          style={[
+            styles.eachTabBtn,
+            {borderBottomColor: selectedBtn[3] ? '#000' : '#fff'},
+          ]}>
+          <Text
+            style={{
+              fontSize: normalize(12),
+              marginVertical: vh(5),
+              fontWeight: selectedBtn[3] ? 'bold' : 'normal',
+            }}>
+            BEAUTY
+          </Text>
+        </TouchableOpacity>
+          {/* <CustomButton
             title="WOMEN"
             APILinks={APILinks.women}
             apicall={apicall}
@@ -70,7 +149,7 @@ function CustomTopTabBar({apicall}) {
             APILinks={APILinks.kids}
             apicall={apicall}
           />
-          <CustomButton title="BEAUTY" />
+          <CustomButton title="BEAUTY" /> */}
         </View>
       </View>
     </SafeAreaView>
@@ -142,4 +221,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomTopTabBar;
+export default React.memo(CustomTopTabBar);
