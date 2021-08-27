@@ -46,13 +46,6 @@ export default function Home({navigation: {setParams}, navigation}) {
       apicall(APILinks.women);
     }
   }, []);
-
-  // const MemoizedCallback = React.useCallback(
-  //   () => {
-  //     return(<CustomTopTabBar apicall={apicall}/>)
-  //   },
-  //   [],
-  // );
   const handleScroll = event => {
     const scrolled = event.nativeEvent.contentOffset.y;
     console.log('Scroleld index: ', scrolled);

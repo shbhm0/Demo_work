@@ -9,7 +9,12 @@ export default function FloatingHeader() {
   const {t} = useTranslation();
 
   return (
-    <View style={{width: screenWidth}}>
+    <View
+      style={{
+        width: screenWidth,
+        borderBottomWidth: 1,
+        borderBottomColor: 'grey',
+      }}>
       <View style={styles.searchBox}>
         <Image
           source={require('../assets/footerIcons/loupe.png')}
